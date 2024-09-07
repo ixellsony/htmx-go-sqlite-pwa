@@ -1,0 +1,11 @@
+{{ range . }}
+<div>
+    <p>{{ .ID }} - {{ .Name }}</p>
+    <form hx-post="/edit-item" hx-target="#items-list" hx-swap="innerHTML">
+        <input type="hidden" name="id" value="{{ .ID }}">
+        <input type="text" name="name" value="{{ .Name }}" required>
+        <button type="submit">Modifier</button>
+    </form>
+    <button hx-get="/delete-item?id={{ .ID }}" hx-target="#items-list" hx-swap="innerHTML">Supprimer</button>
+</div>
+{{ end }}
