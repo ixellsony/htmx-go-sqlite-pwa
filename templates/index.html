@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA PWA avec Go, HTMX, SQLite</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="/static/app.js"></script>
+</head>
+<body>
+    <h1>Items</h1>
+    
+    <!-- Formulaire pour créer un nouvel item -->
+    <form hx-post="/create-item" hx-target="#items-list" hx-swap="innerHTML">
+        <input type="text" name="name" placeholder="Nom de l'item" required>
+        <button type="submit">Ajouter un item</button>
+    </form>
+
+    <div id="items-list" hx-get="/items" hx-target="#items-list" hx-trigger="load">
+        <!-- Les items seront chargés ici via HTMX -->
+    </div>
+</body>
+</html>
